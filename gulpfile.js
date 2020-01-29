@@ -5,7 +5,7 @@
     var angularTranslate = require('./');
 
     function extractTranslations() {
-        return gulp.src('fixtures/fixture1.html')
+        return gulp.src('fixtures/*.html')
             .pipe(angularTranslate({
                 lang: ['fr_FR', 'en_CA'],
                 // suffix: '.json'
