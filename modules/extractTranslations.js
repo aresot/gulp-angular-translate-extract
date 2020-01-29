@@ -48,6 +48,10 @@ function ExtractTranslations (options, content) {
         JavascriptFilterSimpleQuote: '\\$filter\\(\\s*\'translate\'\\s*\\)\\s*\\(\\s*\'((?:\\\\.|[^\'\\\\])*)\'[^\\)]*\\)',
         JavascriptFilterDoubleQuote: '\\$filter\\(\\s*"translate"\\s*\\)\\s*\\(\\s*"((?:\\\\.|[^"\\\\\])*)"[^\\)]*\\)'
     };
+
+    if (options.contentAsValue) {
+      this.regexs['HtmlDirectiveStandaloneWithValue'] = '<[^>]*translate="((?:\\\\.|[^' + this.interpolationEscapeChar + '"\\\\])*)"[^{>]*>([^<]*)<\/[^>]*>';
+    }
     this.setCustomRegex();
 
     this.results = {};
@@ -134,6 +138,10 @@ ExtractTranslations.prototype.extract = function (regexName, regex, content) {
                     translationDefaultValue = "{NB, plural, one{" + evalString[0] + "} other{" + evalString[1] + "}" + (evalString[2] ? ' ' + evalString[2] : '');
                 }
                 translationKey = r[1].trim();
+                break;
+            case 'HtmlDirectiveStandaloneWithValue':
+                translationKey = r[1].trim();
+                translationDefaultValue = r[2].trim();
                 break;
             default:
             translationKey = r[1].trim();
