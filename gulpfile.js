@@ -18,7 +18,8 @@
                 // namespace: true,
                 // stringifyOptions: true,
                 // nullEmpty: true
-                 dest: './dest/i18nextract/'
+                // contentAsValue: true,
+                dest: './dest/i18nextract/'
             }))
             .pipe(gulp.dest('./'));
     }

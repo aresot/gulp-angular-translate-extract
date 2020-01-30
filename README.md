@@ -92,6 +92,7 @@ This is all options supported by gulp-angular-translate:
 - [dest](#dest)
 - [safeMode](#safeMode)
 - [stringifyOptions](#stringifyoptions)
+- [contentAsValue](#contentAsValue)
 
 #### nullEmpty
 
@@ -212,6 +213,22 @@ Default: `false`
 
 If stringifyOptions is set to `true` the output will be sort (case insensitive).
 If stringifyOptions is an `object`, you can easily check [json-stable-stringify](https://github.com/substack/json-stable-stringify) README.
+
+
+### contentAsValue
+
+Type: `Boolean`
+Default: `false`
+
+If set to true then values inside HTML element will always be used as value even when `translate` directive has its own value.
+
+Example:
+
+```HTML
+<p translate="MYKEY">Use that as value</p>
+```
+Will produce:
+"MYKEY": "Use that as value"
 
 ## License
 
